@@ -3,13 +3,12 @@ package com.ksenterprise.org.springreact.controller;
 import com.ksenterprise.org.springreact.domain.Employee;
 import com.ksenterprise.org.springreact.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/api/v1")
 public class EmployeeController {
 
     private final EmployeeRepository repository;
@@ -19,13 +18,19 @@ public class EmployeeController {
         this.repository =repository;
     }
 
-    @GetMapping(value = "/api/v1/employees")
+    @GetMapping(value = "/employees")
     public Iterable<Employee> getEmployees(){
         return repository.findAll();
     }
 
-    @GetMapping(value = "/api/v1/employees/{id}")
-    public Optional<Employee> getEmployeeById(@PathVariable Long id){
+    @GetMapping(value = "/employees/{id}",  params="id" )
+    public Optional<Employee> getEmployeeById(@PathVariable("id") Long id){
         return repository.findById(id);
+    }
+
+    @PostMapping(value = "/saveEmployee")
+    public Iterable<Employee> saveEmployee(@RequestBody Employee employee) {
+        repository.save(employee);
+        return repository.findAll();
     }
 }
