@@ -1,7 +1,10 @@
 language: java
 jdk: openjdk8
 sudo: false
-script: mvn clean install -Dmaven.javadoc.skip=true -B -V
+os: osx
+script: mvn -DskipTests clean install -Dmaven.javadoc.skip=true -B -V
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
 deploy:
   provider: cloudfoundry
   api: https://api.run.pivotal.io
@@ -12,3 +15,6 @@ deploy:
   space: development
   on:
     repo: kartikvarma/spring-react
+  skip_cleanup: true
+  file: target/*.war
+
