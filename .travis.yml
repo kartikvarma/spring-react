@@ -17,5 +17,4 @@ deploy:
   on:
     repo: kartikvarma/spring-react
   skip_cleanup: true
-  file: target/*.war
 

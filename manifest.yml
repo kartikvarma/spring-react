@@ -1,6 +1,7 @@
 ---
 applications:
   - name: spring-react
+    path: ./target/spring-react-1.0.0.war
     memory: 768M
     instances: 1
     random-route: true
