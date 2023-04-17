@@ -1,3 +1,4 @@
+
 package com.ksenterprise.org.springreact;
 
 import org.springframework.boot.SpringApplication;
@@ -10,3 +11,4 @@ public class SpringReactApplication {
         SpringApplication.run(SpringReactApplication.class, args);
     }
 }
+
